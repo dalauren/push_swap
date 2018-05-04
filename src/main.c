@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 13:01:37 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/04 16:23:36 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/04 17:01:11 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int		check_arg(char *str)
 	int i;
 
 	i = 0;
+	if (str[0] == '-')
+		i++;
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
@@ -79,6 +81,11 @@ int				main(int argc, char **argv)
 			return (-1);
 		}
 		i++;
+	}
+	while (a)
+	{
+		printf("data = %d\n", a->data);
+		a = a->next;
 	}
 	return (0);
 }
