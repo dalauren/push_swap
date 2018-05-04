@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 13:01:37 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/02 20:08:51 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/04 14:31:59 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		main(int argc, char **argv)
 {
+	(void)argv;
 	t_stack *stack;
 	/*t_pile *a;*/
 	/*t_pile *tmp;*/

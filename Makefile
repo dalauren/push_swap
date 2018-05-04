@@ -5,16 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dalauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/03/15 17:32:37 by dalauren          #+#    #+#              #
-#    Updated: 2018/05/02 18:40:37 by dalauren         ###   ########.fr        #
+#    Created: 2018/05/04 14:21:48 by dalauren          #+#    #+#              #
+#    Updated: 2018/05/04 15:05:40 by dalauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CC = gcc -Wall -Werror -Wextra
+CC = gcc -Wall -Wextra -Werror
 
 LIBFT = ./libft/
+
+INC_DIR = includes/
+
+SRC_DIR = src/
 
 SRC = main.c \
 	  move.c \
@@ -22,24 +26,29 @@ SRC = main.c \
 	  move3.c \
 	  element.c \
 
+DONE = [\033[0;32mDONE\033[0m]
+
 OBJ = $(SRC:.c=.o)
 
 RM = rm -f
 
+SRC_F = $(addprefix $(SRC_DIR), $(SRC))
+
 all :		$(NAME)
 
-$(NAME):	$(OBJ)
-			make -C $(LIBFT)
-			$(CC) -o $(NAME) $(OBJ) ./libft/libft.a
-
+$(NAME):
+		make -C $(LIBFT)
+		$(CC) -c $(SRC_F) -I $(INC_DIR)
+		$(CC) -o $(NAME) $(OBJ) -I $(INC_DIR) libft/libft.a
+		@echo "push_swap = $(DONE)"
 clean:
-			$(RM) $(OBJ)
-			make clean -C $(LIBFT)
+		$(RM) $(OBJ)
+		make clean -C $(LIBFT)
 
-fclean:		clean
-			$(RM) $(NAME)
-			make fclean -C $(LIBFT)
+fclean:	clean
+		$(RM) $(NAME)
+		make fclean -C $(LIBFT)
 
 re: fclean all
 
-.PHONY: all clean fclen re
+.PHONY: all clean fclean re

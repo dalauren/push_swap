@@ -6,14 +6,14 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 16:03:46 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/02 20:07:02 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/04 14:31:24 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP
 # define PUSH_SWAP
 
-#include "./libft/libft.h"
+#include "./libft.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
