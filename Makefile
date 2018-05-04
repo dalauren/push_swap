@@ -6,7 +6,7 @@
 #    By: dalauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/04 14:21:48 by dalauren          #+#    #+#              #
-#    Updated: 2018/05/04 15:05:40 by dalauren         ###   ########.fr        #
+#    Updated: 2018/05/04 15:51:47 by dalauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ RM = rm -f
 
 SRC_F = $(addprefix $(SRC_DIR), $(SRC))
 
-all :		$(NAME)
+all : $(NAME)
 
-$(NAME):
+$(NAME): $(SRC_F)
 		make -C $(LIBFT)
 		$(CC) -c $(SRC_F) -I $(INC_DIR)
 		$(CC) -o $(NAME) $(OBJ) -I $(INC_DIR) libft/libft.a

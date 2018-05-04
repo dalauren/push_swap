@@ -6,60 +6,79 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 13:01:37 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/04 14:31:59 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/04 16:23:36 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int argc, char **argv)
+static int		check_arg(char *str)
 {
-	(void)argv;
-	t_stack *stack;
-	/*t_pile *a;*/
-	/*t_pile *tmp;*/
-	/*t_pile *b;*/
 	int i;
-	/*int j = 5;*/
 
-	ft_bzero(&stack, sizeof(t_stack));
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (-1);
+	}
+	return (0);
+}
+
+static int		check_list(t_pile **a, int data)
+{
+	t_pile *tmp;
+
+	tmp = *a;
+	while (tmp)
+	{
+		if (data == tmp->data)
+			return (-1);
+		else
+			tmp = tmp->next;
+	}
+	return (0);
+}
+
+static int		push_on_list(t_pile **a, char *str)
+{
+	int value;
+
+	value = ft_atoi(str);
+	if (check_arg(str) == -1)
+		return (-1);
+	if (check_list(a, value) != -1)
+	{
+		lst_push_back(a, value);
+		return (0);
+	}
+	else
+		return (-1);
+	return (0);
+}
+
+int				main(int argc, char **argv)
+{
+	t_pile *a;
+	int i;
+
 	i = 1;
+	a = NULL;
 	if (argc < 2)
 	{
-		ft_putstr("wrong number of arguments\n");
-		return (0);
+		ft_putstr_fd("wrong number of arguments\n", 2);
+		return (-1);
 	}
 	while (i < argc)
 	{
-		
+		if (push_on_list(&a, argv[i]) == -1)
+		{
+			ft_putstr_fd("error\n", 2);
+			return (-1);
+		}
+		i++;
 	}
-	/*lst = NULL;*/
-	/*lst2 = NULL;*/
-	/*while (i != 5)*/
-	/*{*/
-		/*lst_push_back(&lst, i);*/
-		/*i++;*/
-	/*}*/
-	/*while (j != 0)*/
-	/*{*/
-		/*lst_push_back(&lst2, j);*/
-		/*j--;*/
-	/*}*/
-	/*[>push_to_a(&lst, &lst2);<]*/
-	/*//push_to_b(&lst2, &lst);*/
-	/*reverse_rotate_both(&lst, &lst2);*/
-	/*//lst_push_front(&lst, 8);*/
-	/*tmp = lst;*/
-	/*while (tmp)*/
-	/*{*/
-		/*printf("data2 = %d\n", tmp->data);*/
-		/*tmp = tmp->next;*/
-	/*}*/
-	/*tmp = lst2;*/
-	/*while (tmp)*/
-	/*{*/
-		/*printf("lst 2 = %d\n", tmp->data);*/
-		/*tmp = tmp->next;*/
-	/*}*/
 	return (0);
 }
