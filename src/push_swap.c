@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 13:01:37 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/04 17:01:11 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/04 17:26:00 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ static int		push_on_list(t_pile **a, char *str)
 int				main(int argc, char **argv)
 {
 	t_pile *a;
+	t_pile *b;
 	int i;
 
 	i = 1;
 	a = NULL;
+	b = NULL;
 	if (argc < 2)
 	{
 		ft_putstr_fd("wrong number of arguments\n", 2);
@@ -81,11 +83,6 @@ int				main(int argc, char **argv)
 			return (-1);
 		}
 		i++;
-	}
-	while (a)
-	{
-		printf("data = %d\n", a->data);
-		a = a->next;
 	}
 	return (0);
 }

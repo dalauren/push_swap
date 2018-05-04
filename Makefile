@@ -6,7 +6,7 @@
 #    By: dalauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/04 14:21:48 by dalauren          #+#    #+#              #
-#    Updated: 2018/05/04 15:51:47 by dalauren         ###   ########.fr        #
+#    Updated: 2018/05/04 17:27:25 by dalauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INC_DIR = includes/
 
 SRC_DIR = src/
 
-SRC = main.c \
+SRC = push_swap.c \
 	  move.c \
 	  move2.c \
 	  move3.c \
