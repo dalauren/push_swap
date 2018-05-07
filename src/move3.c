@@ -17,3 +17,52 @@ void	rotate_both(t_pile **a, t_pile **b)
 	rotate_a(a);
 	rotate_b(b);
 }
+
+int				check_arg(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str[0] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (-1);
+	}
+	return (0);
+}
+
+int				check_list(t_pile **a, int data)
+{
+	t_pile *tmp;
+
+	tmp = *a;
+	while (tmp)
+	{
+		if (data == tmp->data)
+			return (-1);
+		else
+			tmp = tmp->next;
+	}
+	return (0);
+}
+
+int				push_on_list(t_pile **a, char *str)
+{
+	int value;
+
+	value = ft_atoi(str);
+	if (check_arg(str) == -1)
+		return (-1);
+	if (check_list(a, value) != -1)
+	{
+		lst_push_back(a, value);
+		return (0);
+	}
+	else
+		return (-1);
+	return (0);
+}

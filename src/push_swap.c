@@ -12,59 +12,11 @@
 
 #include "push_swap.h"
 
-static int		check_arg(char *str)
-{
-	int i;
-
-	i = 0;
-	if (str[0] == '-')
-		i++;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			i++;
-		else
-			return (-1);
-	}
-	return (0);
-}
-
-static int		check_list(t_pile **a, int data)
-{
-	t_pile *tmp;
-
-	tmp = *a;
-	while (tmp)
-	{
-		if (data == tmp->data)
-			return (-1);
-		else
-			tmp = tmp->next;
-	}
-	return (0);
-}
-
-static int		push_on_list(t_pile **a, char *str)
-{
-	int value;
-
-	value = ft_atoi(str);
-	if (check_arg(str) == -1)
-		return (-1);
-	if (check_list(a, value) != -1)
-	{
-		lst_push_back(a, value);
-		return (0);
-	}
-	else
-		return (-1);
-	return (0);
-}
-
 int				main(int argc, char **argv)
 {
 	t_pile *a;
 	t_pile *b;
+	int mediane;
 	int i;
 
 	i = 1;
@@ -84,5 +36,7 @@ int				main(int argc, char **argv)
 		}
 		i++;
 	}
+	mediane = find_mediane_lst(a);
+	printf("mediane = %d\n", mediane);
 	return (0);
 }

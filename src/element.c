@@ -52,3 +52,32 @@ void		lst_push_front(t_pile **begin_list, int data)
 	else
 		*begin_list = create_elem(data);
 }
+
+int			find_mediane_lst(t_pile *a)
+{
+	t_mediane med;
+
+	ft_bzero(&med, sizeof(t_mediane));
+	med.tmp = a;
+	while (med.tmp)
+	{
+		med.mediane = med.tmp->data;
+		med.tmp2 = a;
+		while (med.tmp2)
+		{
+			if (med.tmp2->data > med.mediane)
+				med.nb_up++;
+			else if (med.tmp2->data < med.mediane)
+				med.nb_down++;
+			med.tmp2 = med.tmp2->next;
+		}
+		if ((ABS(med.nb_up - med.nb_down)) >= 0 &&
+				(ABS(med.nb_up - med.nb_down)) <= 1)
+			return (med.mediane);
+		else
+			med.tmp = med.tmp->next;
+		med.nb_up = 0;
+		med.nb_down = 0;
+	}
+	return (med.mediane);
+}

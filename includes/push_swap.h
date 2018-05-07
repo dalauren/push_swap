@@ -18,17 +18,28 @@
 #include <unistd.h>
 #include <stdio.h>
 
+# define ABS(x) (x < 0) ? -x : x
+
 typedef struct		s_pile
 {
 	int				data;
 	struct s_pile	*next;
 }					t_pile;
 
-typedef struct		s_stack
+//typedef struct		s_stack
+//{
+	//t_pile			*a;
+	//t_pile			*b;
+//}					t_stack;
+
+typedef struct			s_mediane
 {
-	t_pile			*a;
-	t_pile			*b;
-}					t_stack;
+	int					mediane;
+	int					nb_up;
+	int					nb_down;
+	t_pile				*tmp;
+	t_pile				*tmp2;
+}						t_mediane;
 
 void			swap_a(t_pile **begin_list);
 void			swap_b(t_pile **begin_list);
@@ -43,6 +54,12 @@ void			reverse_rotate_b(t_pile **b);
 void			reverse_rotate_both(t_pile **a, t_pile **b);
 void			lst_push_back(t_pile **begin_list, int data);
 void			lst_push_front(t_pile **begin_list, int data);
+int				check_list(t_pile **a, int data);
+int				check_list_end(t_pile *a);
+int				check_arg(char *str);
+int				push_on_list(t_pile **a, char *str);
+int				checker(t_pile *a, t_pile *b);
+int				find_mediane_lst(t_pile *a);
 t_pile			*create_elem(int data);
 
 #endif
