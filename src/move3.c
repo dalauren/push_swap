@@ -23,7 +23,7 @@ int				check_arg(char *str)
 	int i;
 
 	i = 0;
-	if (str[0] == '-')
+	if (str[0] == '-' || str[0] == '+')
 		i++;
 	while (str[i])
 	{
@@ -50,16 +50,17 @@ int				check_list(t_pile **a, int data)
 	return (0);
 }
 
-int				push_on_list(t_pile **a, char *str)
+int				push_on_list(t_stack *s, char *str)
 {
 	int value;
 
 	value = ft_atoi(str);
 	if (check_arg(str) == -1)
 		return (-1);
-	if (check_list(a, value) != -1)
+	if (check_list(&s->a, value) != -1)
 	{
-		lst_push_back(a, value);
+		lst_push_back(&s->a, value);
+		s->s_len++;
 		return (0);
 	}
 	else

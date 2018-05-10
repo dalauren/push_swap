@@ -12,16 +12,15 @@
 
 #include "push_swap.h"
 
+
+
 int				main(int argc, char **argv)
 {
-	t_pile *a;
-	t_pile *b;
-	int mediane;
+	t_stack s;
 	int i;
 
 	i = 1;
-	a = NULL;
-	b = NULL;
+	ft_bzero(&s, sizeof(t_stack));
 	if (argc < 2)
 	{
 		ft_putstr_fd("wrong number of arguments\n", 2);
@@ -29,14 +28,13 @@ int				main(int argc, char **argv)
 	}
 	while (i < argc)
 	{
-		if (push_on_list(&a, argv[i]) == -1)
+		if (push_on_list(&s, argv[i]) == -1)
 		{
 			ft_putstr_fd("error\n", 2);
 			return (-1);
 		}
 		i++;
 	}
-	mediane = find_mediane_lst(a);
-	printf("mediane = %d\n", mediane);
+	s.mediane = find_mediane_lst(s.a);
 	return (0);
 }

@@ -26,11 +26,13 @@ typedef struct		s_pile
 	struct s_pile	*next;
 }					t_pile;
 
-//typedef struct		s_stack
-//{
-	//t_pile			*a;
-	//t_pile			*b;
-//}					t_stack;
+typedef struct		s_stack
+{
+	t_pile			*a;
+	t_pile			*b;
+	int				s_len;
+	int				mediane;
+}					t_stack;
 
 typedef struct			s_mediane
 {
@@ -57,7 +59,7 @@ void			lst_push_front(t_pile **begin_list, int data);
 int				check_list(t_pile **a, int data);
 int				check_list_end(t_pile *a);
 int				check_arg(char *str);
-int				push_on_list(t_pile **a, char *str);
+int				push_on_list(t_stack *s, char *str);
 int				checker(t_pile *a, t_pile *b);
 int				find_mediane_lst(t_pile *a);
 t_pile			*create_elem(int data);
