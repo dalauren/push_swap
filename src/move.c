@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 15:27:26 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/02 18:39:51 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/11 16:18:29 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	swap_a(t_pile **begin_list)
 		i = tmp->data;
 		tmp->data = tmp->next->data;
 		tmp->next->data = i;
+		i = tmp->nb;
+		tmp->nb = tmp->next->nb;
+		tmp->next->nb = i;
 	}
 }
 
@@ -39,6 +42,9 @@ void	swap_b(t_pile **begin_list)
 		i = tmp->data;
 		tmp->data = tmp->next->data;
 		tmp->next->data = i;
+		i = tmp->nb;
+		tmp->nb = tmp->next->nb;
+		tmp->next->nb = i;
 	}
 }
 
@@ -55,7 +61,7 @@ void	push_to_a(t_pile **a, t_pile **b)
 	tmp = *b;
 	if (*a && *b)
 	{
-		lst_push_front(a, tmp->data);
+		lst_push_front(a, tmp->data, tmp->nb);
 		(*b) = (*b)->next;
 	}
 	free(tmp);
@@ -66,9 +72,9 @@ void	push_to_b(t_pile **b, t_pile **a)
 	t_pile *tmp;
 
 	tmp = *a;
-	if (*a && *b)
+	if (*a)
 	{
-		lst_push_front(b, tmp->data);
+		lst_push_front(b, tmp->data, tmp->nb);
 		(*a) = (*a)->next;
 	}
 	free(tmp);

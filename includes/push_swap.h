@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 16:03:46 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/04 14:31:24 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/11 17:28:25 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct		s_pile
 {
 	int				data;
+	int				nb;
 	struct s_pile	*next;
 }					t_pile;
 
@@ -31,6 +32,7 @@ typedef struct		s_stack
 	t_pile			*a;
 	t_pile			*b;
 	int				s_len;
+	int				nb;
 	int				mediane;
 }					t_stack;
 
@@ -54,14 +56,16 @@ void			rotate_both(t_pile **a, t_pile **b);
 void			reverse_rotate_a(t_pile **a);
 void			reverse_rotate_b(t_pile **b);
 void			reverse_rotate_both(t_pile **a, t_pile **b);
-void			lst_push_back(t_pile **begin_list, int data);
-void			lst_push_front(t_pile **begin_list, int data);
+void			lst_push_back(t_pile **begin_list, int data, int nb);
+void			lst_push_front(t_pile **begin_list, int data, int nb);
+void			separate_mediane(t_stack *s);
+int				lst_size(t_pile *begin_list);
 int				check_list(t_pile **a, int data);
 int				check_list_end(t_pile *a);
 int				check_arg(char *str);
 int				push_on_list(t_stack *s, char *str);
 int				checker(t_pile *a, t_pile *b);
 int				find_mediane_lst(t_pile *a);
-t_pile			*create_elem(int data);
+t_pile			*create_elem(int data, int nb);
 
 #endif

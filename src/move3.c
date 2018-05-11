@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:40:02 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/02 18:42:25 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/05/11 15:58:01 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int				push_on_list(t_stack *s, char *str)
 		return (-1);
 	if (check_list(&s->a, value) != -1)
 	{
-		lst_push_back(&s->a, value);
+		lst_push_back(&s->a, value, s->nb);
+		s->nb++;
 		s->s_len++;
 		return (0);
 	}
