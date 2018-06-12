@@ -6,17 +6,38 @@
 #    By: dalauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/17 08:03:44 by dalauren          #+#    #+#              #
-#    Updated: 2018/05/02 12:40:18 by dalauren         ###   ########.fr        #
+#    Updated: 2018/06/03 17:51:45 by dalauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
+PRINTF = ./ft_printf/
+
 CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-SOURCES = ft_atoi.c\
+SRC_PTF = check_buff.c\
+		  flags.c\
+		  flags_2.c\
+		  flags_3.c\
+		  flags_4.c\
+		  ft_printf.c\
+		  ft_utoa_base.c\
+		  padding.c\
+		  spe_char.c\
+		  spe_d.c\
+		  spe_d2.c\
+		  spe_p.c\
+		  spe_wc.c\
+		  spe_ws.c\
+		  spe_x.c\
+		  unicode.c\
+
+INC_P = ./ft_printf/ft_printf.h
+
+SRC_LIB = ft_atoi.c\
 		  ft_bzero.c\
 		  ft_swap.c\
 		  ft_isalnum.c\
@@ -92,17 +113,22 @@ SOURCES = ft_atoi.c\
 		  ft_uintmaxtoa.c\
 		  get_next_line.c\
 		  get_next_line_utilities.c\
+		  ft_atol.c\
 		  ft_deltab.c\
 
-OBJ = $(SOURCES:.c=.o)
+OBJ = $(SRC_LIB:.c=.o)
+OBJ_P = $(SRC_PTF:.c=.o)
+
+SRC_P_F = $(addprefix $(PRINTF), $(SRC_PTF))
 
 all: $(NAME)
 
 $(NAME):
-	@$(CC) -c $(FLAGS) $(SOURCES)
-	@ar rcs $(NAME) $(OBJ)
+	@$(CC) -c $(FLAGS) $(SRC_LIB) $(SRC_P_F) -I$(INC_P)
+	@ar rcs $(NAME) $(OBJ) $(LIBFT_P) $(OBJ_P)
 
 clean:
+	@rm -f $(OBJ_P)
 	@rm -f $(OBJ)
 
 fclean: clean

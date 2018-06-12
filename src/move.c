@@ -6,76 +6,89 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 15:27:26 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/11 16:18:29 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:22:16 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_pile **begin_list)
+void	swap_a(t_pile **a, t_pile **b)
+{
+	t_pile	*tmp;
+	int		tmp_data;
+	int		i;
+
+	(void)b;
+	tmp_data = 0;
+	i = 0;
+	tmp = *a;
+	if (tmp && tmp->next)
+	{
+		i = tmp->base_nb;
+		tmp->base_nb = tmp->next->base_nb;
+		tmp->next->base_nb = i;
+		tmp_data = tmp->data;
+		tmp->data = tmp->next->data;
+		tmp->next->data = tmp_data;
+	}
+	set_nb(a);
+}
+
+void	swap_b(t_pile **a, t_pile **b)
 {
 	t_pile	*tmp;
 	int		i;
+	int		tmp_data;
 
+	(void)a;
+	tmp_data = 0;
 	i = 0;
-	tmp = *begin_list;
+	tmp = *b;
 	if (tmp && tmp->next)
 	{
-		i = tmp->data;
+		i = tmp->base_nb;
+		tmp_data = tmp->data;
+		tmp->base_nb = tmp->next->base_nb;
+		tmp->next->base_nb = i;
 		tmp->data = tmp->next->data;
-		tmp->next->data = i;
-		i = tmp->nb;
-		tmp->nb = tmp->next->nb;
-		tmp->next->nb = i;
+		tmp->next->data = tmp_data;
 	}
+	set_nb(b);
 }
 
-void	swap_b(t_pile **begin_list)
+void	swap_both(t_pile **a, t_pile **b)
 {
-	t_pile *tmp;
-	int i;
-
-	i = 0;
-	tmp = *begin_list;
-	if (tmp && tmp->next)
+	if (*a && (*a)->next && *b && (*b)->next)
 	{
-		i = tmp->data;
-		tmp->data = tmp->next->data;
-		tmp->next->data = i;
-		i = tmp->nb;
-		tmp->nb = tmp->next->nb;
-		tmp->next->nb = i;
+		swap_a(a, b);
+		swap_b(a, b);
 	}
-}
-
-void	swap_both(t_pile **begin_list1, t_pile **begin_list2)
-{
-	swap_a(begin_list1);
-	swap_b(begin_list2);
 }
 
 void	push_to_a(t_pile **a, t_pile **b)
 {
 	t_pile *tmp;
 
-	tmp = *b;
-	if (*a && *b)
+	tmp = NULL;
+	if (*b)
 	{
-		lst_push_front(a, tmp->data, tmp->nb);
+		tmp = *b;
+		lst_push_front(a, tmp->data, tmp->nb, tmp->base_nb);
 		(*b) = (*b)->next;
+		free(tmp);
 	}
-	free(tmp);
 }
 
-void	push_to_b(t_pile **b, t_pile **a)
+void	push_to_b(t_pile **a, t_pile **b)
 {
 	t_pile *tmp;
 
-	tmp = *a;
+	tmp = NULL;
 	if (*a)
 	{
-		lst_push_front(b, tmp->data, tmp->nb);
+		tmp = *a;
+		lst_push_front(b, tmp->data, tmp->nb, tmp->base_nb);
 		(*a) = (*a)->next;
+		free(tmp);
 	}
-	free(tmp);
 }

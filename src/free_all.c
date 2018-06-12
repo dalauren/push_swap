@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 07:53:24 by dalauren          #+#    #+#             */
-/*   Updated: 2018/06/03 17:47:09 by dalauren         ###   ########.fr       */
+/*   Created: 2018/06/03 14:02:12 by dalauren          #+#    #+#             */
+/*   Updated: 2018/06/06 09:41:58 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int		ft_atoi(const char *str)
+void			free_move_list(t_move_list *move_list)
 {
-	long int	n;
-	int			sign;
+	int i;
 
-	sign = 1;
-	n = 0;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '-')
+	i = 0;
+	while (i < 11)
 	{
-		sign = -1;
-		str++;
+		free(move_list[i].str);
+		i++;
 	}
-	else if (*str == '+')
-		str++;
-	while (*str && ft_isdigit(*str))
+	free(move_list);
+}
+
+void			free_list(t_pile *a)
+{
+	t_pile *robin;
+	t_pile *batman;
+
+	batman = a;
+	while (batman)
 	{
-		n = n * 10 + (*str - '0');
-		str++;
+		robin = batman->next;
+		free(batman);
+		batman = robin;
 	}
-	return ((int)n * sign);
+	a = NULL;
+}
+
+void			free_stack(t_stack *s)
+{
+	free_list(s->a);
+	free_list(s->b);
 }

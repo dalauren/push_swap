@@ -6,25 +6,26 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 12:22:21 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/11 16:24:25 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/06/03 14:54:32 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_pile		*create_elem(int data, int nb)
+t_pile		*create_elem(int data, int nb, int base_nb)
 {
 	t_pile *new_elem;
 
 	if (!(new_elem = (t_pile *)malloc(sizeof(t_list))))
 		return (NULL);
 	new_elem->data = data;
+	new_elem->base_nb = base_nb;
 	new_elem->nb = nb;
 	new_elem->next = NULL;
 	return (new_elem);
 }
 
-void		lst_push_back(t_pile **begin_list, int data, int nb)
+void		lst_push_back(t_pile **begin_list, int data, int nb, int base_nb)
 {
 	t_pile *lst;
 
@@ -33,25 +34,25 @@ void		lst_push_back(t_pile **begin_list, int data, int nb)
 	{
 		while (lst->next != NULL)
 			lst = lst->next;
-		lst->next = create_elem(data, nb);
+		lst->next = create_elem(data, nb, base_nb);
 	}
 	else
-		*begin_list = create_elem(data, nb);
+		*begin_list = create_elem(data, nb, base_nb);
 }
 
-void		lst_push_front(t_pile **begin_list, int data, int nb)
+void		lst_push_front(t_pile **begin_list, int data, int nb, int base_nb)
 {
 	t_pile *lst;
 
 	lst = *begin_list;
 	if (*begin_list)
 	{
-		lst = create_elem(data, nb);
+		lst = create_elem(data, nb, base_nb);
 		lst->next = *begin_list;
 		*begin_list = lst;
 	}
 	else
-		*begin_list = create_elem(data, nb);
+		*begin_list = create_elem(data, nb, base_nb);
 }
 
 int			find_mediane_lst(t_pile *a)
@@ -83,13 +84,15 @@ int			find_mediane_lst(t_pile *a)
 	return (med.mediane);
 }
 
-int		lst_size(t_pile *begin_list)
+int			lst_size(t_pile *begin_list)
 {
 	int		i;
 	t_pile	*tmp;
 
 	i = 0;
 	tmp = begin_list;
+	if (!tmp)
+		return (-1);
 	while (tmp)
 	{
 		i++;

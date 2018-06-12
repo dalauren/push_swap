@@ -6,7 +6,7 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 08:03:34 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/04 14:31:41 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/06/03 17:07:48 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int					ft_isprint(int c);
 void				ft_strrev(char *s);
 void				ft_deltab(char **tab);
 void				ft_swap(float *a, float *b);
+int					ft_printf(const char *format, ...);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
@@ -69,6 +70,7 @@ char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
+long int			ft_atol(const char *str);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strjoinfree(char const *s1, char const *s2);

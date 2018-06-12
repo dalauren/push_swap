@@ -6,7 +6,7 @@
 #    By: dalauren <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/04 14:21:48 by dalauren          #+#    #+#              #
-#    Updated: 2018/05/04 17:27:25 by dalauren         ###   ########.fr        #
+#    Updated: 2018/06/06 09:52:10 by dalauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,21 @@ SRC = push_swap.c \
 	  move2.c \
 	  move3.c \
 	  element.c \
+	  short_sort.c \
+	  short_sort_by_mediane.c \
+	  short_second_sort.c \
+	  long_sort.c \
+	  long_sort_p2.c \
+	  init.c \
+	  visu.c \
+	  free_all.c \
 
 SRC2 = checker.c \
 	  move.c \
 	  move2.c \
 	  move3.c \
 	  element.c \
+	  free_all.c \
 
 DONE = [\033[0;32mDONE\033[0m]
 

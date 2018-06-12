@@ -6,16 +6,34 @@
 /*   By: dalauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 18:40:02 by dalauren          #+#    #+#             */
-/*   Updated: 2018/05/11 15:58:01 by dalauren         ###   ########.fr       */
+/*   Updated: 2018/06/06 11:11:11 by dalauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_both(t_pile **a, t_pile **b)
+void			set_nb(t_pile **a)
 {
-	rotate_a(a);
-	rotate_b(b);
+	int		i;
+	t_pile	*tmp;
+
+	i = 0;
+	tmp = *a;
+	while (tmp)
+	{
+		tmp->nb = i;
+		tmp = tmp->next;
+		i++;
+	}
+}
+
+void			rotate_both(t_pile **a, t_pile **b)
+{
+	if (*a && (*a)->next && *b && (*b)->next)
+	{
+		rotate_a(a, b);
+		rotate_b(b, a);
+	}
 }
 
 int				check_arg(char *str)
@@ -52,16 +70,18 @@ int				check_list(t_pile **a, int data)
 
 int				push_on_list(t_stack *s, char *str)
 {
-	int value;
+	long int value;
 
-	value = ft_atoi(str);
+	value = ft_atol(str);
+	if (value > INT_MAX || value < INT_MIN)
+		return (-1);
 	if (check_arg(str) == -1)
 		return (-1);
 	if (check_list(&s->a, value) != -1)
 	{
-		lst_push_back(&s->a, value, s->nb);
+		lst_push_back(&s->a, value, s->nb, s->base_nb);
 		s->nb++;
-		s->s_len++;
+		s->size_list++;
 		return (0);
 	}
 	else
